@@ -10,7 +10,7 @@ export const Home = () => {
       <div className="text-center mt-5">
         <p>Creando contact list...</p>
         <div>este es nuestra API:{context.store.API}</div>
-		<p>nuestros contactos: {context.store.Contacts}.</p>
+        <p>nuestros contactos: {context.store.Contacts}.</p>
       </div>
     </>
   );
