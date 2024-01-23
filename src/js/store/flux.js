@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     // almacenamiento de variables (key: valor)
     store: {
       API: "https://playground.4geeks.com/apis/fake/contact/",
-      Contacts: [],
+      data: "",
       datos: ["juan", "marieth", "nicole"],
     },
     actions: {
@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         const response = await fetch(store.API + "agenda/Juan_contact");
         const getContacts = await response.json();
-        setStore({ Contacts: getContacts });
+        setStore({ data: getContacts });
+        console.log(data);
       },
     },
   };
