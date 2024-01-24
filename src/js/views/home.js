@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
+import Card from "../component/Card.jsx";
 
 export const Home = () => {
-  const context = useContext(Context);
-  console.log(context.store.data);
+  const { store, actions } = useContext(Context);
+  // const flux = useContext(Context);
+  console.log(store.contacts);
   return (
     <>
-      <div className="text-center mt-5">
-        <p>Creando contact list...</p>
-        <div>esta es nuestra API:{context.store.API}</div>
-        <button onClick={() => context.actions.getAllContact()}>
-          nuestros contactos: {context.store.data}.
-        </button>
-      </div>
+      <Card />
+    
     </>
   );
 };
