@@ -1,30 +1,34 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-import "../../styles/demo.css";
-
-export const AddContact = () => {
-  const [inputValue, setInputValue] = useState({
+const EditContact = () => {
+  const [newInputvalue, setNewInputValue] = useState({
     full_name: "",
     address: "",
     email: "",
     phone: "",
     agenda_slug: "Juan_contact",
   });
-  const { store, actions } = useContext(Context);
+  const params = useParams();
+  console.log(useParams);
   const handleChange = (event) => {
-    setInputValue({ ...inputValue, [event.target.name]: event.target.value });
+    setNewInputValue({
+      ...newInputvalue,
+      [event.target.name]: event.target.value,
+    });
     console.log(event.target.value);
   };
-  const handleSubmit = async (event) => {
+  const { store, actions } = useContext(Context);
+
+  const handleEditContact = async (event) => {
     event.preventDefault();
-    const response = await actions.addContact(inputValue);
+    const response = await actions.updateContact(newInputvalue, params.id);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="container ">
+      <form onSubmit={handleEditContact} className="container ">
         <div>
           <div>Add full Name</div>
           <input
@@ -68,3 +72,5 @@ export const AddContact = () => {
     </>
   );
 };
+
+export default EditContact;

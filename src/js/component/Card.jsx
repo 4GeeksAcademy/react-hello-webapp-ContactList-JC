@@ -1,9 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   const { store, actions } = useContext(Context);
-  const handleEditContact = ""
+  // const handleEditContact = async (event) => {
+  //   event.preventDefault();
+  //   const response = await actions.updateContact;
+  // };
 
   return (
     <>
@@ -11,11 +15,12 @@ const Card = () => {
         return (
           <div
             key={contact.id}
-            className=" container d-flex justify-content-between border "
+            id="contacts"
+            className="d-flex justify-content-between align-items-center rounded border border-2 "
           >
             <div className="d-flex">
-              <div className="mx-3">image</div>
-              <div>
+              <img src="https://picsum.photos/200" className="redonda" />
+              <div className="mt-4">
                 <div>{contact.full_name}</div>
                 <div>{contact.email}</div>
                 <div>{contact.address}</div>
@@ -23,8 +28,15 @@ const Card = () => {
               </div>
             </div>
             <div>
-              <button onClick={()=> actions.updateContact} className="mx-1">editar</button>
-              <button onClick={() => {}} className="mx-1">
+              <Link to={`/edit-contact/${contact.id}`} className="m-2">
+                <button className="rounded">editar</button>
+              </Link>
+              <button
+                onClick={() => {
+                  actions.deleteContact(contact.id);
+                }}
+                className="m-1 rounded"
+              >
                 {" "}
                 eliminar
               </button>

@@ -24,6 +24,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
         });
+        if (response.ok) {
+          getActions().getAllContact();
+        }
       },
 
       deleteContact: async (id) => {
@@ -31,6 +34,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         const response = await fetch(`${store.api}${id}`, {
           method: "DELETE",
         });
+        if (response.ok) {
+          getActions().getAllContact();
+        }
       },
 
       addContact: async (newContact) => {
